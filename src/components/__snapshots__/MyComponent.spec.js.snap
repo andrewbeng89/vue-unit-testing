@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyComponent.vue passes snapshot testing 1`] = `
+<div>
+  <span>
+     The first item is {
+  "foo": "bar"
+} 
+  </span>
+   
+  <button
+    id="btn"
+  >
+    
+    Click Me!
+  
+  </button>
+   
+  <button>
+    
+    Add Item
+  
+  </button>
+   
+  <pre>
+    No secret...
+  </pre>
+</div>
+`;
