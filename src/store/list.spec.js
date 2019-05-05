@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-jest.mock("axios"); // eslint-disable-line
+jest.mock("axios");
 import axios from "axios";
 import listStore from "./list";
 
@@ -46,7 +46,7 @@ describe("Vuex list store", () => {
     // Mock-resolve an axios request
     axios.get.mockResolvedValue({ data: items });
     // Mock the commit function
-      const commit = jest.fn(); // eslint-disable-line
+    const commit = jest.fn();
 
     // Call fetchItems with page = 0
     await actions.fetchItems({ commit }, 0);
@@ -55,7 +55,30 @@ describe("Vuex list store", () => {
     expect(commit).toHaveBeenNthCalledWith(3, "setStatus", "success");
   });
 
-  it("Should add items to a populated list", async () => {});
+  it("Should add items to a populated list", async () => {
+    const items = mockItems();
+    // Mock-resolve an axios request
+    axios.get.mockResolvedValue({ data: items });
+    // Mock the commit function
+    const commit = jest.fn();
 
-  it("Should set an error status if the API errors", async () => {});
+    // Call fetchItems with page = 1
+    await actions.fetchItems({ commit }, 1);
+    expect(commit).toHaveBeenNthCalledWith(1, "setStatus", "loading");
+    expect(commit).toHaveBeenNthCalledWith(2, "addItems", items);
+    expect(commit).toHaveBeenNthCalledWith(3, "setStatus", "success");
+  });
+
+  it("Should set an error status if the API errors", async () => {
+    // Mock API error
+    const errorMessage = "Async error";
+    axios.get.mockRejectedValue(new Error(errorMessage));
+    // Mock the commit function
+    const commit = jest.fn();
+
+    // Call fetchItems with page = 0
+    await actions.fetchItems({ commit }, 0);
+    expect(commit).toHaveBeenNthCalledWith(1, "setStatus", "loading");
+    expect(commit).toHaveBeenNthCalledWith(2, "setStatus", errorMessage);
+  });
 });
