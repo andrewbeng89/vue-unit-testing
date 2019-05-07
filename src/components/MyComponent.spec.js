@@ -34,7 +34,7 @@ describe("MyComponent.vue", () => {
     expect(wrapper.emitted()["my-event"].length).toBe(1);
   });
 
-  it("passes snapshot testing", () => {
+  it("prints the first item, two buttons, and 'secret'", () => {
     const wrapper = shallowMount(MyComponent, {
       store,
       localVue

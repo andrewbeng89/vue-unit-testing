@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MyComponent.vue passes snapshot testing 1`] = `
+exports[`MyComponent.vue Prints the first item, two buttons, and 'secret' 1`] = `
 <div>
   <span>
      The first item is {
