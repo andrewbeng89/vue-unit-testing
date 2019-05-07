@@ -3,12 +3,10 @@
  * less than or equal to n
  */
 const factorial = n => {
-  let result = 1;
-  for (let i = 0; i < n; i += 1) {
-    const multiplier = i + 1;
-    result *= multiplier;
+  if (n === 1) {
+    return 1;
   }
-  return result;
+  return n * factorial(n - 1);
 };
 
 describe("The factorial function", () => {
