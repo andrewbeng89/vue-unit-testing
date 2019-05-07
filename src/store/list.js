@@ -27,7 +27,7 @@ const actions = {
           : "https://nodejs-koa.andrewbeng89.now.sh";
       commit("setStatus", "loading");
       const { data } = await axios.get(`${url}/items?page=${page}`);
-      const action = page ? "setItems" : "addItems";
+      const action = page ? "addItems" : "setItems";
       commit(action, data);
       commit("setStatus", "success");
     } catch (error) {
