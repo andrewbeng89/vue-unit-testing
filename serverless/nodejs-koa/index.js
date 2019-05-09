@@ -1,8 +1,10 @@
 const Koa = require("koa");
 const Router = require("koa-router");
 const querystring = require("querystring");
+const cors = require("@koa/cors");
 
 const app = new Koa();
+app.use(cors());
 const router = new Router();
 
 app.use(async (ctx, next) => {
