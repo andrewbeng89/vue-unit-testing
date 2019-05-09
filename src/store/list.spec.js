@@ -2,16 +2,9 @@
 jest.mock("axios");
 import axios from "axios";
 import listStore from "./list";
+import { mockItems } from "./utils/utils-list";
 
 const { mutations, getters, actions } = listStore;
-
-const mockItems = () => {
-  const items = [];
-  for (let i = 0; i < 10; i++) {
-    items.push({ foo: "bar" });
-  }
-  return items;
-};
 
 describe("Vuex list store", () => {
   it("Should add an item to the list", () => {

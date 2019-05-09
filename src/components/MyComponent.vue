@@ -1,12 +1,15 @@
 <!-- Vue component using the mapped getter -->
 <template>
   <div>
-    <span> The first item is {{ getItem(0) }} </span>
+    <span v-if="getItem(0)"> The first item is {{ getItem(0) }} </span>
     <button id="btn" @click="onClick">
       Click Me!
     </button>
-    <button @click="addItem({ foo: 'bar' })">
+    <button id="add" @click="addItem({ foo: 'bar' })">
       Add Item
+    </button>
+    <button id="fetch" @click="onFetchItems">
+      Fetch Items from API
     </button>
     <pre>{{ secret }}</pre>
   </div>
@@ -14,7 +17,7 @@
 
 <script>
 import Vue from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default Vue.extend({
   props: {
@@ -29,9 +32,23 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations(["addItem"]),
+    ...mapActions(["fetchItems"]),
     onClick() {
       this.$emit("my-event");
+    },
+    async onFetchItems() {
+      try {
+        await this.fetchItems(this.page);
+        this.page += 1;
+      } catch (error) {
+        console.error(error);
+      }
     }
+  },
+  data() {
+    return {
+      page: 0
+    };
   }
 });
 </script>

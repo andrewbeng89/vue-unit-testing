@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <my-component />
+    <my-component v-bind="secret ? { secret } : {}" v-on:my-event="onMyEvent" />
   </div>
 </template>
 
@@ -12,6 +12,16 @@ export default {
   name: "app",
   components: {
     MyComponent
+  },
+  data() {
+    return {
+      secret: ""
+    };
+  },
+  methods: {
+    onMyEvent() {
+      this.secret = `Message at ${new Date()}`;
+    }
   }
 };
 </script>

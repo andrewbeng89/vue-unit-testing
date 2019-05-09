@@ -12,7 +12,8 @@
     "test:factorial": "vue-cli-service test:unit ./tests/unit/factorial.spec.js",
     "test:list": "vue-cli-service test:unit ./src/store/list.spec.js",
     "test:my-component": "vue-cli-service test:unit ./src/components/MyComponent.spec.js",
-    "test:clear-cache": "jest --clearCache"
+    "test:clear-cache": "vue-cli-service test:unit --clearCache",
+    "test:integration": "vue-cli-service test:unit --testMatch \"**/src/**/*.int.(js)\""
   },
   "dependencies": {
     "axios": "^0.18.0",
