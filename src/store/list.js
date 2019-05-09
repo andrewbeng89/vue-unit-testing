@@ -8,10 +8,10 @@ const mutations = {
     state.list = [...state.list, item];
   },
   setItems: (state, items) => {
-    state.items = items;
+    state.list = items;
   },
   addItems: (state, items) => {
-    state.items = [...state.items, ...items];
+    state.list = [...state.list, ...items];
   },
   setStatus: (state, status) => {
     state.status = status;
@@ -23,7 +23,7 @@ const actions = {
     try {
       const url =
         process.env.NODE_ENV === "development"
-          ? "http://localhost:3000"
+          ? "http://127.0.0.1:3000"
           : "https://nodejs-koa.andrewbeng89.now.sh";
       commit("setStatus", "loading");
       const { data } = await axios.get(`${url}/items?page=${page}`);
